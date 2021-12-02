@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: edu.baylor.cs.se.hibernate.JmsListenerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! - in edu.baylor.cs.se.hibernate.JmsListenerTest
+initializationError(edu.baylor.cs.se.hibernate.JmsListenerTest)  Time elapsed: 0.003 s  <<< ERROR!
+org.junit.runners.model.InvalidTestClassError: 
+Invalid test class 'edu.baylor.cs.se.hibernate.JmsListenerTest':
+  1. No runnable methods
+
