@@ -180,4 +180,28 @@ public class TeamService {
         }
         return saveTeam;
     }
+	
+	
+    public List<Team> populate() {
+
+        Team team = new Team();
+        team.setTeamState("Accepted");
+        team.setTeamName("Code Hunter");
+
+        Team team1 = new Team();
+        team.setTeamState("Accepted");
+        team.setTeamName("Baylor 1");
+
+        Team team2 = new Team();
+        team.setTeamState("Accepted");
+        team.setTeamName("Baylor 2");
+
+        List<Team> teams = new ArrayList<>();
+        teams.add(team);
+        teams.add(team1);
+        teams.add(team2);
+
+        return teams;
+
+    }
 }

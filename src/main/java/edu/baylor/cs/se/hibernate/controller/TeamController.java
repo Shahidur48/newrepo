@@ -58,6 +58,11 @@ public class TeamController {
             @RequestBody Team team) {
         return teamService.putTeam(teamId,team);
     }
+	
+	@GetMapping("/populate")
+    public List<Team> teamById() {
+        return teamService.populate();
+    }
 
     @PutMapping(path="/{teamId}/makeEditable", consumes="application/json")
     public Team setEditableTeam(
