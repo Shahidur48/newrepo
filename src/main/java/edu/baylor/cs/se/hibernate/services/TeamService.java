@@ -189,12 +189,12 @@ public class TeamService {
         team.setTeamName("Code Hunter");
 
         Team team1 = new Team();
-        team.setTeamState("Accepted");
-        team.setTeamName("Baylor 1");
+        team1.setTeamState("Accepted");
+        team1.setTeamName("Baylor 1");
 
         Team team2 = new Team();
-        team.setTeamState("Accepted");
-        team.setTeamName("Baylor 2");
+        team2.setTeamState("Accepted");
+        team2.setTeamName("Baylor 2");
 
         List<Team> teams = new ArrayList<>();
         teams.add(team);
