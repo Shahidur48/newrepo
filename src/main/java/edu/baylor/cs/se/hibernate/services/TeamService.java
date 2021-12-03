@@ -187,14 +187,17 @@ public class TeamService {
         Team team = new Team();
         team.setTeamState("Accepted");
         team.setTeamName("Code Hunter");
+		team.setTeamId(1);
 
         Team team1 = new Team();
         team1.setTeamState("Accepted");
         team1.setTeamName("Baylor 1");
+		team.setTeamId(2);
 
         Team team2 = new Team();
         team2.setTeamState("Accepted");
         team2.setTeamName("Baylor 2");
+		team.setTeamId(3);
 
         List<Team> teams = new ArrayList<>();
         teams.add(team);
