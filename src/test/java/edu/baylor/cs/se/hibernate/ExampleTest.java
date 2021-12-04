@@ -3,6 +3,7 @@ package edu.baylor.cs.se.hibernate;
 import edu.baylor.cs.se.hibernate.model.Contest;
 import edu.baylor.cs.se.hibernate.model.Person;
 import edu.baylor.cs.se.hibernate.model.Team;
+import edu.baylor.cs.se.hibernate.services.TeamService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @AutoConfigureMockMvc
 public class ExampleTest {
 
-    @Autowired
-    private TestEntityManager em;
 
 //    public void populate(){
 //        Person p1 = new Person();
@@ -173,72 +172,38 @@ public class ExampleTest {
 //
 //    }
 
-    @Test
-    //tests that email validation works
-    public void getTeamTest(){
-       // populate();
-        System.out.println("+++++++++++++++++++First Test Case Start+++++++++++++++++++++++++++++++++++++++++++++++");
-        List<Team> teams = em.getEntityManager().createQuery("SELECT t from Team t").getResultList();
-        for (Team t: teams){
-            System.out.println(t.getTeamName());
-        }
-        System.out.println("+++++++++++++++++++First Test Case Ends+++++++++++++++++++++++++++++++++++++++++++++++");
-
-    }
-
-    @Test
-    //simple test
-    public void getAgedGroupedByTest(){
-    //    populate();
-        List<Team> teams = em.getEntityManager().createQuery("SELECT t from Team t").getResultList();
-
-//        System.out.println("Hello");
-
-//        ArrayList<Date> dob = new ArrayList<>();
-        System.out.println("+++++++++++++++++++Second Test Case Start+++++++++++++++++++++++++++++++++++++++++++++++");
-        Map<Integer, ArrayList<String>> mapper = new HashMap<>();
-        ArrayList<String> sName = new ArrayList<>();
-        for(Team p: teams)
-        {
-            Set<Person > person = p.getTeamMember();
-            for(Person s: person)
-            {
-                Date sDOB = s.getDOB();
-                String pName = s.getName();
-                Period period = Period.between(sDOB.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now());
-                Integer age = period.getYears();
-
-                ArrayList<String> personP = mapper.getOrDefault(age,new ArrayList<String>());
-                personP.add(pName);
-                mapper.put(age,personP);
-
-            }
-
 //
-        }
-        for (Map.Entry<Integer,ArrayList<String>> entry: mapper.entrySet())
-        {
-            System.out.println("AGE: "+" "+entry.getKey()+ " Name: "+entry.getValue());
-        }
-        System.out.println("+++++++++++++++++++Second Test Case Ends+++++++++++++++++++++++++++++++++++++++++++++++");
+
+    public List<Team> populate() {
+
+        Team team = new Team();
+        team.setTeamState("Accepted");
+        team.setTeamName("Code Hunter");
+        team.setTeamId(1L);
+
+
+        Team team1 = new Team();
+        team1.setTeamState("Accepted");
+        team1.setTeamName("Baylor 1");
+
+
+        Team team2 = new Team();
+        team2.setTeamState("Accepted");
+        team2.setTeamName("Baylor 2");
+
+        List<Team> teams = new ArrayList<>();
+        teams.add(team);
+        teams.add(team1);
+        teams.add(team2);
+
+        return teams;
+
     }
 
     @Test
-    public void contestOccupancyTest(){
-     //   populate();
-
-        List<Contest> contest = em.getEntityManager().createQuery("SELECT c from Contest c").getResultList();
-        System.out.println("+++++++++++++++++++Third Test Case Start+++++++++++++++++++++++++++++++++++++++++++++++");
-        for (Contest con: contest)
-        {
-            int capacity = con.getCapacity();
-            int totalTeams = (int) con.getTeams().stream().count();
-            System.out.println("Total Capacity "+capacity+" "+"Total Teams: "+totalTeams);
-            int spaceLeft = capacity - totalTeams;
-            System.out.println("Space Left: "+spaceLeft);
-        }
-
-        System.out.println("+++++++++++++++++++Third Test Case Ends+++++++++++++++++++++++++++++++++++++++++++++++");
+    public void teamList(){
+       List<Team> teams =  populate();
+        System.out.println(teams);
     }
 
 
